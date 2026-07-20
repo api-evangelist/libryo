@@ -1,0 +1,56 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/libryo/libryo-api-oauth-docs
+docs: https://github.com/libryo/libryo-api-oauth-docs
+description: >-
+  Libryo's partner API authenticates with OAuth 2.0 authorization-code grant. A partner
+  application sends a Libryo user to the platform authorization endpoint, receives an
+  authorization code on its registered redirect URI, then exchanges that code plus a
+  client secret for an access token at the API token endpoint. Client credentials
+  (client_id / client_secret) are issued by Libryo to partners; there is no public
+  self-service registration. Captured from Libryo's own public OAuth integration guide
+  and confirmed against the live token endpoint.
+summary:
+  types:
+  - oauth2
+schemes:
+- name: libryoOAuth2
+  type: oauth2
+  flow: authorizationCode
+  grant_types:
+  - authorization_code
+  authorizationUrl: https://my.libryo.com/oauth/authorize
+  tokenUrl: https://api.libryo.com/api/v1/oauth/token
+  scopes:
+  - view-legal-report
+  - search-legislation
+  - list-libryos
+  client_registration: >-
+    Manual. client_id and client_secret are provided to the partner by Libryo; the
+    redirect_uri must be pre-registered against the client.
+  pkce: not documented
+  refresh_token: not documented in the public guide
+  description: >-
+    Three-legged OAuth 2.0. Step 1 redirect the user to the authorization endpoint with
+    client_id, redirect_uri, response_type=code and a space-delimited scope list. Step 2
+    the user logs into Libryo and approves or rejects; Libryo redirects back with either
+    ?code=<authorization-code> or ?error=access_denied. Step 3 POST the code to the token
+    endpoint with grant_type=authorization_code, client_id, client_secret and redirect_uri.
+  sources:
+  - https://github.com/libryo/libryo-api-oauth-docs
+  detail: scopes/libryo-scopes.yml
+verification:
+  probed: '2026-07-19'
+  notes: >-
+    An unauthenticated POST to https://api.libryo.com/api/v1/oauth/token returned HTTP 400
+    with an RFC 6749 JSON error body ({"error":"invalid_request", ...,"hint":"Check the
+    `client_id` parameter"}), confirming a live OAuth 2.0 token endpoint. GET
+    https://my.libryo.com/oauth/authorize with an unknown client returned HTTP 401. The
+    error envelope shape ("hint" alongside error/error_description) is that of
+    thephpleague/oauth2-server, the library behind Laravel Passport, consistent with the
+    PHP/Laravel stack visible across Libryo's public repositories.
+caveats: >-
+  Note that *.libryo.com resolves via a wildcard DNS record to the platform load balancer,
+  so hostnames such as developer.libryo.com and docs.libryo.com answer HTTP 200 with the
+  application login page and are NOT developer surfaces. Only the two endpoints above are
+  documented API endpoints.
