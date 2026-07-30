@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/libryo/libryo-api-oauth-docs
+docs: https://github.com/libryo/libryo-api-oauth-docs
+description: >-
+  The OAuth 2.0 scopes Libryo documents for partner integrations. Libryo publishes no
+  OpenAPI definition, so these are taken verbatim from the scope list in its public OAuth
+  integration guide rather than derived from a spec. Scopes are requested as a
+  space-delimited string on the authorization request and describe read access to the
+  authorizing user's regulatory content.
+schemes:
+- name: libryoOAuth2
+  type: oauth2
+  grant_types:
+  - authorization_code
+  authorizationUrl: https://my.libryo.com/oauth/authorize
+  tokenUrl: https://api.libryo.com/api/v1/oauth/token
+  docs: https://github.com/libryo/libryo-api-oauth-docs
+  notes: >-
+    Scopes are passed space-delimited, e.g.
+    scope=view-legal-report search-legislation list-libryos
+scopes:
+- scope: view-legal-report
+  description: >-
+    View the authorizing user's legal report — the compiled register of legal obligations
+    applicable to their sites.
+  schemes:
+  - libryoOAuth2
+- scope: search-legislation
+  description: >-
+    Search the Libryo legislation corpus on behalf of the authorizing user.
+  schemes:
+  - libryoOAuth2
+- scope: list-libryos
+  description: >-
+    List the "Libryos" available to the authorizing user. A Libryo is a site-specific,
+    filtered stream of the legislation that applies to one operation or location.
+  schemes:
+  - libryoOAuth2
+completeness: >-
+  The public guide states these are "the scopes that are currently available", so this is
+  believed to be the full published scope surface as of the last commit to the docs repo.
+  Libryo may issue additional scopes to partners under agreement; no write scopes are
+  documented publicly.

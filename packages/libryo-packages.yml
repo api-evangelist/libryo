@@ -1,0 +1,71 @@
+generated: '2026-07-19'
+method: searched
+source: https://registry.npmjs.org/nkyimu, https://github.com/orgs/libryo/repositories
+description: >-
+  First-party packages published by Libryo. Libryo ships no client SDK for its partner
+  API — the public OAuth guide shows raw HTTP with Guzzle (PHP) and urllib (Python)
+  rather than a wrapper library. What Libryo does publish is nkyimu, an open-source
+  TypeScript library for building validated Akoma Ntoso (LegalDocML) documents, which
+  underpins the structured-legislation side of its platform. Registry checks were run
+  against npm, Packagist, PyPI and the org's public repositories; official:true is set
+  only where first-party ownership is verifiable.
+packages:
+- language: typescript
+  registry: npm
+  name: nkyimu
+  version: 1.4.14
+  url: https://www.npmjs.com/package/nkyimu
+  source: https://github.com/libryo/nkyimu
+  install: npm install nkyimu
+  license: GPL-3.0-only
+  official: true
+  status: archived
+  first_published: '2018-08-21'
+  last_published: '2022-05-10'
+  description: >-
+    A library written in TypeScript that allows creating self-validating Akoma Ntoso
+    documents. Akoma Ntoso (OASIS LegalDocML) is the XML standard for parliamentary,
+    legislative and judiciary documents. The name references an Adinkra symbol for
+    skillfulness and precision.
+  ownership_evidence: >-
+    npm maintainer list includes libryo-devops <devops@libryo.com>, confirming the package
+    and the github.com/libryo organization are the company's own.
+  note: >-
+    A legal-document tooling library, not a client for the Libryo API. The GitHub
+    repository is archived.
+not_published:
+- registry: npm
+  checked:
+  - libryo
+  - libryo-sdk
+  - "@libryo/sdk"
+  result: no first-party Libryo API client package found
+- registry: packagist
+  checked:
+  - libryo/entrust-permissions
+  - libryo/link-preview
+  result: >-
+    404 — these repositories exist on GitHub under the libryo org but are not published to
+    Packagist, so they are source-only and are not counted as distributed packages.
+- registry: pypi
+  result: no first-party Libryo package found
+other_public_repos:
+  note: >-
+    Additional public source-only repositories in the libryo GitHub org, none distributed
+    as packages and none a client for the Libryo API.
+  repos:
+  - name: entrust-permissions
+    url: https://github.com/libryo/entrust-permissions
+    language: PHP
+    description: Role-based permissions for Laravel 5|6.
+  - name: link-preview
+    url: https://github.com/libryo/link-preview
+    language: PHP
+    description: Link preview generator for PHP with Laravel support.
+  - name: pdf2htmlEX
+    url: https://github.com/libryo/pdf2htmlEX
+    language: HTML
+    description: Convert PDF to HTML without losing text or format.
+  - name: libryo-api-oauth-docs
+    url: https://github.com/libryo/libryo-api-oauth-docs
+    description: The public OAuth 2.0 integration guide for the Libryo API.

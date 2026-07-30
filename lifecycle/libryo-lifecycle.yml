@@ -1,0 +1,69 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/libryo/libryo-api-oauth-docs, https://libryo.com/faqs/, and host
+  probing on 2026-07-19.
+description: >-
+  Versioning, deprecation, support and availability posture for the Libryo partner API.
+  Libryo publishes no changelog, no deprecation policy, no status page and no SLA on its
+  public surface; those are recorded as absent rather than invented. The one firm signal is
+  URI-path major versioning.
+versioning:
+  scheme: URI path
+  mechanism: Major version segment — https://api.libryo.com/api/v1
+  current: v1
+  header: none documented
+  docs: https://github.com/libryo/libryo-api-oauth-docs
+  notes: >-
+    v1 is the only version ever referenced publicly, and has been stable in the docs repo
+    since it was published. No v2 surface is advertised.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: not documented
+  rfc8594: false
+  notes: >-
+    No public deprecation or sunset policy. As a partner-gated API with manually issued
+    client credentials, change is presumably communicated directly to integration partners
+    under agreement rather than through a public notice channel.
+changelog:
+  url: null
+  published: false
+  notes: >-
+    No dated API changelog is published. The marketing site's post sitemap contains only the
+    default WordPress placeholder entry, so there is no product blog carrying release notes
+    either.
+status_page:
+  url: null
+  published: false
+  probed:
+  - url: https://libryo.com/status
+    status: 404
+  notes: >-
+    No status page was found on libryo.com, and no third-party status host (Statuspage,
+    Instatus) is linked from the site or the application login page. No StatusPage pointer
+    is emitted in apis.yml for this reason.
+sla:
+  url: null
+  public_uptime_target: null
+  notes: >-
+    No public SLA. Availability commitments are presumably handled in enterprise contracts,
+    consistent with the demo-and-quote sales motion on the pricing page.
+support:
+  contact: https://libryo.com/contact-us/
+  faq: https://libryo.com/faqs/
+  access_model: >-
+    API access is partner-gated. client_id and client_secret are issued by Libryo; there is
+    no self-service developer signup or key provisioning.
+deprecated_operations: []
+deprecated_operations_note: >-
+  Cannot be derived — Libryo publishes no OpenAPI definition from which deprecated:true
+  flags could be read.
+infrastructure_observed:
+  probed: '2026-07-19'
+  platform_lb: libryo-lb-338296508.eu-west-1.elb.amazonaws.com
+  region: AWS eu-west-1 (Ireland)
+  marketing_site: WordPress, fronted separately from the platform
+  stack_signal: >-
+    OAuth error envelope matches thephpleague/oauth2-server (Laravel Passport), consistent
+    with the PHP/Laravel repositories in the public GitHub org.

@@ -1,0 +1,66 @@
+generated: '2026-07-19'
+method: probed
+format: rfc6749-oauth-error
+source: >-
+  Live observation of https://api.libryo.com/api/v1/oauth/token on 2026-07-19 and
+  https://my.libryo.com/oauth/authorize; error semantics named in
+  https://github.com/libryo/libryo-api-oauth-docs.
+description: >-
+  Libryo publishes no OpenAPI definition and no error reference, so this catalog cannot be
+  derived from 4xx/5xx response schemas. What is recorded here is the error envelope
+  actually returned by the live OAuth endpoints plus the two redirect-time error
+  conditions Libryo documents in its integration guide. Resource-endpoint errors behind
+  OAuth are not publicly documented and are deliberately not guessed at.
+rfc9457: false
+envelope:
+  media_type: application/json
+  shape: '{ "error": string, "error_description": string, "hint": string }'
+  standard: >-
+    RFC 6749 §5.2 OAuth 2.0 error response. The additional "hint" field is an extension
+    emitted by thephpleague/oauth2-server (the library behind Laravel Passport).
+  example_observed: >-
+    {"error":"invalid_request","error_description":"The request is missing a required
+    parameter, includes an invalid parameter value, includes a parameter more than once,
+    or is otherwise malformed.","hint":"Check the `client_id` parameter"}
+problems:
+- status: 400
+  code: invalid_request
+  title: Invalid request
+  meaning: >-
+    The token request is missing a required parameter, has an invalid parameter value, or
+    repeats a parameter.
+  remediation: >-
+    Send grant_type, client_id, client_secret, redirect_uri and code as form-encoded
+    parameters. The "hint" field names the offending parameter.
+  observed: true
+  endpoint: POST /api/v1/oauth/token
+- status: 401
+  title: Unauthorized
+  meaning: >-
+    The authorization endpoint rejected the request — the client is unknown or the caller
+    is not authenticated.
+  remediation: >-
+    Confirm the client_id issued by Libryo and that the redirect_uri exactly matches the
+    one registered against that client. Unauthenticated users must log into Libryo before
+    the consent screen renders.
+  observed: true
+  endpoint: GET /oauth/authorize
+redirect_errors:
+  description: >-
+    Errors returned to the partner's redirect_uri as query parameters rather than as an
+    HTTP error body, per the published guide.
+  errors:
+  - param: error
+    value: access_denied
+    meaning: The Libryo user rejected the authorization request.
+    remediation: >-
+      Treat as a normal user decision. Do not retry automatically; re-prompt only on an
+      explicit user action.
+  success_param:
+    param: code
+    meaning: The user approved; the value is a single-use authorization code.
+undocumented:
+  resource_endpoints: >-
+    The error envelope for the scoped resource endpoints (legal report, legislation
+    search, Libryo list) is not published and was not probed, as probing requires partner
+    credentials. Nothing is asserted about it here.

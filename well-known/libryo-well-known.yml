@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: probed
+description: >-
+  Results of probing the /.well-known/ discovery surface for every Libryo host in apis.yml
+  (the marketing site, the application host, and the API host). Status is the HTTP code
+  observed at fetch time. No document returned a real payload, so nothing was saved
+  verbatim. An empty discovery surface is a valid, expected result.
+probed: '2026-07-19'
+hosts:
+- host: https://libryo.com
+  role: marketing site (WordPress)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 200
+    note: Present but only the WordPress default (disallow /wp-admin/).
+- host: https://my.libryo.com
+  role: application host, also the OAuth authorization host
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://api.libryo.com
+  role: API host (OAuth token endpoint)
+  documents:
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /swagger
+    status: 404
+  - path: /swagger/v1/swagger.json
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /docs
+    status: 404
+findings:
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  llms_txt: false
+  machine_readable_api_definition: false
+notes: >-
+  Libryo runs OAuth 2.0 but publishes no RFC 8414 authorization-server metadata document,
+  so the endpoints must be configured from its written guide rather than discovered.
+  Important caveat for anyone re-probing- *.libryo.com is a wildcard DNS record pointing at
+  the platform load balancer (libryo-lb-338296508.eu-west-1.elb.amazonaws.com), so ANY
+  hostname under libryo.com answers HTTP 200 with the application login page. Hosts such as
+  developer.libryo.com and docs.libryo.com therefore look alive but are not real developer
+  surfaces, and a naive probe will report false positives.

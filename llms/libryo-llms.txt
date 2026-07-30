@@ -1,0 +1,92 @@
+# Libryo
+
+> Libryo (ERM Libryo) is a regulatory compliance management platform for Environmental,
+> Health and Safety (EHS) teams. It automates legal registers, streams site-specific
+> regulatory obligations across jurisdictions, and tracks legislative change so operators
+> know which laws apply to each of their sites. Founded in 2016, now part of ERM.
+
+generated: 2026-07-19
+method: generated
+source: apis.yml and the artifacts in this repository; Libryo publishes no llms.txt of its
+own (https://libryo.com/llms.txt returned 404 on 2026-07-19).
+
+## What Libryo does
+
+Libryo maps regulatory obligations to specific operating sites. A "Libryo" is a filtered,
+site-specific stream of the legislation that applies to one operation or location. Products
+include Libryo Sites (site-specific EHS regulatory intelligence), Libryo Assess (assessment
+and audit management), Libryo Collaborate, and custom legal registers. Customers are
+concentrated in manufacturing, energy and utilities, chemicals, mining, logistics and
+telecoms. Libryo also supplies regulatory content as a data-as-a-service feed into
+third-party GRC platforms.
+
+## API surface
+
+Libryo operates a partner-facing RESTful API. Access is partner-gated: there is no
+self-service developer signup, and client credentials are issued by Libryo directly. The
+full endpoint reference is provided to partners under agreement and is NOT public. What is
+public is the OAuth 2.0 integration guide.
+
+- Base URL: https://api.libryo.com/api/v1
+- OAuth guide: https://github.com/libryo/libryo-api-oauth-docs
+- Authorization endpoint: https://my.libryo.com/oauth/authorize
+- Token endpoint: https://api.libryo.com/api/v1/oauth/token
+- Grant type: authorization_code (three-legged OAuth 2.0)
+- Versioning: URI path, currently v1
+
+### Scopes
+
+- `view-legal-report` — view the authorizing user's compiled register of applicable legal obligations
+- `search-legislation` — search the Libryo legislation corpus on the user's behalf
+- `list-libryos` — list the site-specific regulatory streams available to the user
+
+Scopes are requested space-delimited on the authorization request. All published scopes are
+read-only; no write scopes are documented.
+
+### Errors
+
+Errors from the OAuth endpoints follow RFC 6749 §5.2 as `application/json`, with a
+non-standard `hint` field naming the offending parameter:
+
+    {"error":"invalid_request","error_description":"...","hint":"Check the `client_id` parameter"}
+
+Libryo does NOT use RFC 9457 problem+json. On the redirect URI, rejection is signalled as
+`?error=access_denied` and success as `?code=<authorization-code>`.
+
+## What Libryo does not publish
+
+Recording these honestly matters more than guessing:
+
+- No OpenAPI or Swagger definition (probed across api.libryo.com — all 404)
+- No /.well-known/ documents: no security.txt, no openid-configuration, no
+  oauth-authorization-server metadata, no api-catalog
+- No client SDK for the API — the official guide shows raw HTTP (Guzzle in PHP, urllib in Python)
+- No public status page, changelog, deprecation policy or SLA
+- No published security certification (SOC 2, ISO 27001) on the Libryo product site
+
+## Important caveat for automated crawlers
+
+`*.libryo.com` is a wildcard DNS record pointing at the platform load balancer in AWS
+eu-west-1. ANY hostname under libryo.com — including `developer.libryo.com` and
+`docs.libryo.com` — answers HTTP 200 with the application login page. These are NOT
+developer surfaces. Do not treat a 200 on an invented subdomain as evidence of a
+documentation or developer portal.
+
+## Open source
+
+- nkyimu (npm, GPL-3.0-only, archived) — TypeScript library for creating self-validating
+  Akoma Ntoso (OASIS LegalDocML) documents. Published under devops@libryo.com.
+  https://www.npmjs.com/package/nkyimu
+
+## Links
+
+- Website: https://libryo.com
+- About: https://libryo.com/about-us/
+- FAQs: https://libryo.com/faqs/
+- Pricing: https://libryo.com/pricing-regulatory-tracking/
+- Case studies: https://libryo.com/case-studies/
+- Resources: https://libryo.com/resources-legaltech/
+- Contact: https://libryo.com/contact-us/
+- Login: https://my.libryo.com/login
+- Privacy policy: https://libryo.com/privacy-policy/
+- GitHub: https://github.com/libryo

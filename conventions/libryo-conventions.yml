@@ -1,0 +1,75 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/libryo/libryo-api-oauth-docs plus live probing of
+  https://api.libryo.com/api/v1/oauth/token and https://my.libryo.com/oauth/authorize on
+  2026-07-19.
+description: >-
+  Cross-cutting request/response conventions for the Libryo partner API. Libryo publishes
+  no OpenAPI definition and no endpoint reference outside its partner agreement, so this
+  profile records only what is documented in the public OAuth guide or directly observed
+  against the live endpoints. Fields marked "not documented" are genuinely unpublished,
+  not assumed absent.
+base_url: https://api.libryo.com/api/v1
+api_style: REST over HTTPS, form-encoded requests, JSON responses
+authentication:
+  scheme: OAuth 2.0 authorization-code grant; bearer access token
+  token_endpoint: https://api.libryo.com/api/v1/oauth/token
+  authorization_endpoint: https://my.libryo.com/oauth/authorize
+  scopes:
+  - view-legal-report
+  - search-legislation
+  - list-libryos
+  docs: https://github.com/libryo/libryo-api-oauth-docs
+  detail: authentication/libryo-authentication.yml
+  observed: >-
+    Token requests are form-encoded (application/x-www-form-urlencoded) with
+    grant_type, client_id, client_secret, redirect_uri and code, per the published PHP
+    example using Guzzle form_params.
+versioning:
+  scheme: URI path
+  mechanism: Major version segment in the path — /api/v1
+  current: v1
+  detail: lifecycle/libryo-lifecycle.yml
+  notes: >-
+    No version request header is documented. The v1 segment has been stable in the public
+    guide since it was published.
+error_envelope:
+  observed_shape: '{ "error": string, "error_description": string, "hint": string }'
+  media_type: application/json
+  standard: RFC 6749 OAuth 2.0 error response, extended with a non-standard "hint" field
+  rfc9457: false
+  detail: errors/libryo-problem-types.yml
+  notes: >-
+    Confirmed on the token endpoint only. The error envelope of the resource endpoints
+    behind OAuth is not publicly documented and was not probed, since doing so requires
+    partner credentials.
+idempotency:
+  supported: not documented
+  notes: >-
+    Libryo documents no idempotency-key header, and the published scope surface is
+    read-only (view, search, list), so there is no documented unsafe write to make
+    idempotent. No Idempotency pointer is emitted in apis.yml for this reason.
+pagination:
+  style: not documented
+  notes: >-
+    A list-libryos scope and a legislation search imply collection responses, but Libryo
+    publishes no pagination parameters or response envelope.
+rate_limiting:
+  documented: false
+  headers: not documented
+field_expansion:
+  supported: not documented
+metadata:
+  supported: not documented
+request_tracing:
+  request_id_header: not documented
+transport:
+  tls: true
+  notes: >-
+    All documented endpoints are HTTPS. See security/libryo-domain-security.yml for the
+    TLS/HSTS/DNS posture.
+host_caveat: >-
+  *.libryo.com is a wildcard DNS record resolving to the platform load balancer in
+  eu-west-1, so arbitrary subdomains return the login page with HTTP 200. Only
+  api.libryo.com (token/resource) and my.libryo.com (authorization) are real API hosts.
