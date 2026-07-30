@@ -1,20 +1,82 @@
 aid: libryo
 name: Libryo
-description: Libryo is a company surfaced as a portfolio company of seedcamp and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Libryo (ERM Libryo) is a regulatory compliance management platform for Environmental,
+  Health and Safety (EHS) teams. It automates legal registers, streams site-specific
+  regulatory obligations across jurisdictions, and tracks legislative change so that
+  operators know which laws apply to each of their sites. Founded in 2016 with a
+  distributed team across Cape Town, London, Toronto, Nairobi and Berlin, Libryo is now
+  part of ERM, the sustainability consultancy. The product surface spans Libryo Sites
+  (site-specific EHS regulatory intelligence), Libryo Assess (assessment and audit
+  management), Libryo Collaborate, and custom legal registers, and is used in
+  manufacturing, energy and utilities, chemicals, mining, logistics and telecoms. Libryo
+  exposes a partner-facing RESTful API secured with OAuth 2.0 authorization-code flow,
+  documented publicly in the libryo/libryo-api-oauth-docs repository, and also offers its
+  regulatory content as a data-as-a-service feed into third-party GRC platforms.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://libryo.com/wp-content/uploads/2025/03/cropped-favicon-32x32.png
 url: https://raw.githubusercontent.com/api-evangelist/libryo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - seedcamp
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-parent-company: ERM
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Regulatory Compliance
+- Legal Tech
+- Environmental Health and Safety
+- Governance Risk and Compliance
+- Legal Registers
+- Regulatory Change Management
+- Sustainability
+- OAuth
+apis:
+- aid: libryo:libryo-api
+  name: Libryo API
+  description: >-
+    The Libryo Platform's partner-facing RESTful API. Third-party applications integrate
+    on behalf of a Libryo user using the OAuth 2.0 authorization-code flow, then call the
+    versioned /api/v1 surface to view legal reports, search legislation, and list the
+    user's Libryos (site-specific regulatory streams). Libryo publishes the OAuth
+    integration guide in a public GitHub repository; the endpoint reference itself is
+    made available to partners under agreement rather than published openly.
+  humanURL: https://github.com/libryo/libryo-api-oauth-docs
+  baseURL: https://api.libryo.com/api/v1
+  tags:
+  - Regulatory Compliance
+  - Legal Registers
+  - Legislation Search
+  - OAuth
+  properties:
+  - type: Documentation
+    url: https://github.com/libryo/libryo-api-oauth-docs
+  - type: Authentication
+    url: authentication/libryo-authentication.yml
+  - type: OAuthScopes
+    url: scopes/libryo-scopes.yml
+  - type: ErrorCatalog
+    url: errors/libryo-problem-types.yml
+  - type: Conventions
+    url: conventions/libryo-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/libryo-lifecycle.yml
+  - type: Conformance
+    url: conformance/libryo-conformance.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +84,43 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://libryo.com
+  url: https://libryo.com
+- type: Documentation
+  url: https://github.com/libryo/libryo-api-oauth-docs
+- type: GitHubOrganization
+  url: https://github.com/libryo
+- type: Support
+  url: https://libryo.com/contact-us/
+- type: HelpCenter
+  url: https://libryo.com/faqs/
+- type: Pricing
+  url: https://libryo.com/pricing-regulatory-tracking/
+- type: Login
+  url: https://my.libryo.com/login
+- type: PrivacyPolicy
+  url: https://libryo.com/privacy-policy/
+- type: CaseStudies
+  url: https://libryo.com/case-studies/
+- type: Resources
+  url: https://libryo.com/resources-legaltech/
+- type: About
+  url: https://libryo.com/about-us/
+- type: Packages
+  url: packages/libryo-packages.yml
+- type: WellKnown
+  url: well-known/libryo-well-known.yml
+- type: DomainSecurity
+  url: security/libryo-domain-security.yml
+- type: LLMsTxt
+  url: llms/libryo-llms.txt
+- type: Conventions
+  url: conventions/libryo-conventions.yml
+- type: Conformance
+  url: conformance/libryo-conformance.yml
+- type: Lifecycle
+  url: lifecycle/libryo-lifecycle.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
