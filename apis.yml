@@ -44,6 +44,16 @@ tags:
 - Legal Registers
 - Regulatory Change Management
 - Sustainability
+- Authentication
+tags_raw:
+- Company
+- Regulatory Compliance
+- Legal Tech
+- Environmental Health and Safety
+- Governance Risk and Compliance
+- Legal Registers
+- Regulatory Change Management
+- Sustainability
 - OAuth
 apis:
 - aid: libryo:libryo-api
@@ -58,6 +68,11 @@ apis:
   humanURL: https://github.com/libryo/libryo-api-oauth-docs
   baseURL: https://api.libryo.com/api/v1
   tags:
+  - Regulatory Compliance
+  - Legal Registers
+  - Legislation Search
+  - Authentication
+  tags_raw:
   - Regulatory Compliance
   - Legal Registers
   - Legislation Search
