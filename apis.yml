@@ -13,6 +13,17 @@ description: >-
   exposes a partner-facing RESTful API secured with OAuth 2.0 authorization-code flow,
   documented publicly in the libryo/libryo-api-oauth-docs repository, and also offers its
   regulatory content as a data-as-a-service feed into third-party GRC platforms.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
