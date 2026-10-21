@@ -1,0 +1,16 @@
+generated: '2026-10-20'
+method: none
+source:
+- https://zapier.com/apps/libryo/integrations
+- https://n8n.io/integrations/libryo/
+- https://composio.dev/toolkits/libryo
+- https://monid.ai/tools/libryo
+checked:
+- https://composio.dev/toolkits/libryo
+- https://monid.ai/tools/libryo
+- https://n8n.io/integrations/libryo/
+- https://zapier.com/apps/libryo/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []

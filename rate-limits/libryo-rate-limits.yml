@@ -1,0 +1,7 @@
+name: Libryo rate limits
+generated: '2026-10-20'
+method: none
+source: https://github.com/libryo/libryo-api-oauth-docs
+limit_count: 0
+limits: []
+note: The only public API documentation (the OAuth README in libryo/libryo-api-oauth-docs) states no rate limits or rate-limit headers.

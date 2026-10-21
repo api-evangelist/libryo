@@ -1,0 +1,103 @@
+generated: '2026-10-20'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 6
+  own: 5
+  other_domain: 0
+  platform: 1
+  roles:
+  - api
+  - docs
+  - identity
+  - marketing
+  - other
+  - website
+hosts:
+- host: api.libryo.com
+  found_by:
+  - apis[]
+  - probed
+  - contract-discovery
+  - well-known
+  types: []
+  serves:
+  - api
+  registrable_domain: libryo.com
+  role: api
+  relation: own
+- host: blog.libryo.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - Blog
+  serves: []
+  registrable_domain: libryo.com
+  role: marketing
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - Documentation
+  - GitHubOrganization
+  serves:
+  - docs
+  - hosting
+  vendor: github-pages
+  registrable_domain: github.com
+  role: docs
+  relation: platform
+- host: info.libryo.com
+  found_by:
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - well-known
+  types: []
+  serves:
+  - docs
+  registrable_domain: libryo.com
+  role: other
+  relation: own
+- host: libryo.com
+  found_by:
+  - pointer
+  - probed
+  - contract-discovery
+  - well-known
+  types:
+  - TermsOfService
+  - Website
+  - Support
+  - HelpCenter
+  - Pricing
+  - PrivacyPolicy
+  - CaseStudies
+  - Resources
+  - About
+  serves: []
+  registrable_domain: libryo.com
+  role: website
+  relation: own
+- host: my.libryo.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - Login
+  serves: []
+  registrable_domain: libryo.com
+  role: identity
+  relation: own

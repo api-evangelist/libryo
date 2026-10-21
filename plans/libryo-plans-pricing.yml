@@ -1,0 +1,12 @@
+name: Libryo pricing
+generated: '2026-10-20'
+method: searched
+source: https://libryo.com/pricing-regulatory-tracking/
+audience: business-product
+pricing_basis: negotiated
+published: false
+delivery:
+  delivery: managed
+plan_count: 0
+plans: []
+note: "No tiers or prices are published. The page states: ERM Libryo pricing is tailored to your organization and structured as an annual subscription. Quotes come via a form."
