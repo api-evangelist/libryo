@@ -64,50 +64,109 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Libryo (ERM Libryo) is a regulatory compliance management platform for Environmental, Health
-and Safety (EHS) teams. It automates legal registers, streams site-specific regulatory
-obligations across jurisdictions, and tracks legislative change so operators know which laws
-apply to each of their sites. Founded in 2016 with a distributed team across Cape Town,
-London, Toronto, Nairobi and Berlin, it is now part of ERM.
+Libryo (ERM Libryo) is a regulatory compliance management platform for Environmental, Health and Safety (EHS) teams. It automates legal registers, streams site-specific regulatory obligations across jurisdictions, and tracks legislative change so that operators know which laws apply to each of their sites. Founded in 2016 with a distributed team across Cape Town, London, Toronto, Nairobi and Berlin, Libryo is now part of ERM, the sustainability consultancy. The product surface spans Libryo Sites (site-specific EHS regulatory intelligence), Libryo Assess (assessment and audit management), Libryo Collaborate, and custom legal registers, and is used in manufacturing, energy and utilities, chemicals, mining, logistics and telecoms. Libryo exposes a partner-facing RESTful API secured with OAuth 2.0 authorization-code flow, documented publicly in the libryo/libryo-api-oauth-docs repository, and also offers its regulatory content as a data-as-a-service feed into third-party GRC platforms.
 
-- Website: https://libryo.com
-- GitHub: https://github.com/libryo
-- Backed by: seedcamp
+**Areas:** Company · Regulatory Compliance · Legal Tech · Environmental Health and Safety · Governance Risk and Compliance · Legal Registers · Regulatory Change Management · Sustainability · Authentication
 
-## API
+## Libryo on APIs.io
 
-Libryo runs a partner-facing RESTful API at `https://api.libryo.com/api/v1`, secured with the
-OAuth 2.0 authorization-code grant. Access is partner-gated — client credentials are issued
-by Libryo, and the full endpoint reference is supplied under agreement rather than published.
-The public integration guide is https://github.com/libryo/libryo-api-oauth-docs.
+Everything profiled for Libryo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/libryo/](https://apis.io/providers/libryo/)** — or go straight to one of the APIs or properties below.
 
-Published scopes are read-only: `view-legal-report`, `search-legislation`, `list-libryos`.
+### APIs (1)
 
-## Artifacts
+- [Libryo API](https://apis.io/apis/libryo/libryo-api/) — The Libryo Platform's partner-facing RESTful API. Third-party applications integrate on behalf of a Libryo user using the OAuth 2.0 authorization-code flow,…
 
-| Path | Type | Method |
-|---|---|---|
-| `authentication/libryo-authentication.yml` | Authentication | searched |
-| `scopes/libryo-scopes.yml` | OAuthScopes | searched |
-| `packages/libryo-packages.yml` | Packages | searched |
-| `conventions/libryo-conventions.yml` | Conventions | searched |
-| `conformance/libryo-conformance.yml` | Conformance | searched |
-| `lifecycle/libryo-lifecycle.yml` | Lifecycle | searched |
-| `errors/libryo-problem-types.yml` | ErrorCatalog | probed |
-| `well-known/libryo-well-known.yml` | WellKnown | probed |
-| `security/libryo-domain-security.yml` | DomainSecurity | probed |
-| `llms/libryo-llms.txt` | LLMsTxt | generated |
+### Published properties
 
-## Notes for future runs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Wildcard DNS.** `*.libryo.com` resolves to the platform load balancer in AWS eu-west-1,
-  so *any* subdomain (`developer.`, `docs.`, `api.`) returns HTTP 200 with the app login
-  page. Only `api.libryo.com` and `my.libryo.com` are real API hosts. Do not record invented
-  subdomains as developer surfaces.
-- **No OpenAPI.** Nothing to ground overlays, MCP tool lists, Agent Skills or a data model
-  in, so those artifacts are intentionally absent rather than fabricated.
-- **No status page, changelog, deprecation policy, SLA, security.txt or published
-  certification** was found, so no `StatusPage`, `Deprecation`, `Security` or `Compliance`
-  pointer is emitted.
-- **No API SDK.** `nkyimu` is first-party but is an Akoma Ntoso document library, not a
-  client for the API, so no `SDKs` pointer is emitted.
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Libryo Authentication](https://apis.io/security/libryo/libryo-authentication/)
+- [Libryo Domain Security](https://apis.io/security/libryo/libryo-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Libryo Scopes](https://apis.io/scopes/libryo/libryo-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Libryo Plans Pricing](https://apis.io/plans/libryo/libryo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Libryo Rate Limits](https://apis.io/rate-limits/libryo/libryo-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://libryo.com)
+- [Documentation](https://github.com/libryo/libryo-api-oauth-docs)
+- [Pricing](https://libryo.com/pricing-regulatory-tracking/)
+- [Support](https://libryo.com/contact-us/)
+- [Blog](https://blog.libryo.com/what-is-a-legal-register)
+- [Terms of service](https://libryo.com/terms/)
+- [Privacy policy](https://libryo.com/privacy-policy/)
+- [GitHub](https://github.com/libryo)
+
+## API Evangelist rating
+
+**Kin Score 28.8** — thin · rubric 0.24.0 · scored 2026-10-20
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 38.2 |
+
+**Agent readiness 5.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.8** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/libryo/](https://apis.io/providers/libryo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Libryo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/libryo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
